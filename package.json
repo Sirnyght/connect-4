@@ -1,0 +1,14 @@
+{
+  "name": "connect4",
+  "version": "1.0.0",
+  "description": "Small connect4 game for learning purpose",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "connect4"
+  ],
+  "author": "Dimitri Hude",
+  "license": "ISC"
+}

@@ -1,0 +1,34 @@
+Puissance 4
+
+7*6
+
+A B C D E F G
+O O O O O O O
+O O O O O O O
+O O O O O O O
+O O O O O O O
+O O O O O O O
+O O O O O O O
+
+Notion de colonne où on joue
+Quand il met 1 jeton, il tombe au plus bas possible -> Gravité
+
+Win condition : 
+4 jetons alignés (verticale, horizontale, diagonale)
+
+Cas du match nul : la grille est complète, aucun gagnant, le jeu s'arrête
+
+Bonus :
+Reverse d'une colonne
+Reverse de colonne : la gravité se réapplique
+
+Bonus 2 :
+Random sur le reverse d'une colonne
+
+Bonus 3 :
+Limitation du nombre de reverse
+
+REGLES A DEFINIR LORS DE LA CREATION DU P4, à expliquer dans un Readme
+Dans Gitlab
+
+Rendu : 08/12/2023
