@@ -1,46 +1,27 @@
 import './App.css';
 import { useState } from 'react';
 import Board from './components/Board.js';
+import { cells } from './utils/cells.js';
+
 
 function App() {
-  // board from 0 to 42
-  const baseBoard = [0, 0, 0, 0, 0, 0, 0, 
-                 0, 0, 0, 0, 0, 0, 0, 
-                 0, 0, 0, 0, 0, 0, 0, 
-                 0, 0, 0, 0, 0, 0, 0, 
-                 0, 0, 0, 0, 0, 0, 0, 
-                 0, 0, 0, 0, 0, 0, 0];
-
   const [turn, setTurn] = useState(1); // 1 or 2
-  const [board, setBoard] = useState(baseBoard);
+  const [board, setBoard] = useState(cells);
 
-
-  function updateBoard(index, value) {
-    // update the board
-    const newBoard = board;
-    console.log(index);
-    console.log(newBoard[index]);
-    if (newBoard[index] === 0) {
-      if (turn === 1) {
-        setTurn(2);
-      }
-      else {
-        setTurn(1);
-      }
-      console.log("here");
-      newBoard[index] = value;
+  function updateBoard(cell, value) {
+    // First, get cell column and row
+    const col = cell.col;
+    // Then, get the cells in that column
+    const columnCells = board.filter((c) => c.col === col);
+    // For the first cell in that column starting from the end that has a value of 0, update it
+    const firstEmptyCell = columnCells.reverse().find((c) => c.value === 0);
+    if (firstEmptyCell) {
+      firstEmptyCell.value = value;
+      setBoard([...board]);
+      setTurn(turn === 1 ? 2 : 1);
     }
-    else {
-      console.log("Case already filled");
-      return;
-    }
-    setBoard(newBoard);
-    console.log(board); 
-    return newBoard;
   }
-
-   
-
+  
   return (
     <div className="app">
       <h1>Connect 4</h1>
