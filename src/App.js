@@ -26,37 +26,6 @@ function App() {
       setTurn(turn === 1 ? 2 : 1);
     }
     if (!firstEmptyCell) return;
-
-    // let firstEmptyCell = null;
-    // for (let i = columnCells.length - 1; i >= 0; i--) {
-    //   if (columnCells[i].value === 0) {
-    //     firstEmptyCell = columnCells[i];
-    //     break;
-    //   }
-    // }
-
-    // if (!firstEmptyCell) return;
-
-    // // Update the board
-    // const newBoard = board.map((c) => {
-    //   if (c.index === firstEmptyCell.index) {
-    //     return {
-    //       ...c,
-    //       value,
-    //     };
-    //   }
-    //   return c;
-    // });
-
-    // setBoard(newBoard);
-
-    // // Update the turn
-    // setTurn(turn === 1 ? 2 : 1);
-
-    // Then, check for a win
-    // If there is a win, alert the winner
-    // If there is a tie, alert the tie
-    // Otherwise, do nothing
     
     const winner = checkWin(board, firstEmptyCell);
     if (winner === 1) {
