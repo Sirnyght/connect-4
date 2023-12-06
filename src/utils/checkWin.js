@@ -3,7 +3,7 @@ export function checkWin(board, cell) {
     // Check for vertical win
     // Check for diagonal win
     // Check for tie
-    // Return 0 for no win, 1 for player 1 win, 2 for player 2 win
+    // Return 0 for no win, 1 for player 1 win, 2 for player 2 win, and 3 for tie
     const h = hor(board, cell);
     const v = vert(board, cell);
     const d = diag(board, cell);
@@ -40,7 +40,6 @@ function vert(board, cell) {
     // concat up and down and ignore duplicates
     const vert = [...new Set(up.concat(down))];
     if (vert.length >= 4) {
-        console.log(vert[0].value);
         return [vert[0].value, vert];
     }
     return 0;
@@ -74,7 +73,7 @@ function tie(board) {
     // Check for tie
     // If there are no more empty cells, return 3
     // Otherwise, return 0
-    const emptyCells = board.filter((c) => console.log(c.value) || c.value === 0);
+    const emptyCells = board.filter((c) => c.value === 0);
     if (emptyCells.length === 0) {
         return [3, []];
     }
