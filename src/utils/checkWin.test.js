@@ -1,0 +1,81 @@
+import { checkWin } from './checkWin';
+import { cells } from './cells';
+
+test('returns 0 for no win', () => {
+  const board = cells;
+
+  const cell =  {  
+    col: 6,
+    index: 41,
+    row: 5,
+    value: 1
+  };
+
+  const result = checkWin(board, cell);
+  expect(result).toBe(0);
+});
+
+test('returns 1 for player 1 win (horizontal)', () => {
+  const board = cells;
+  // set up cells for player 1 win
+  for (let i = 37; i < 41; i++)
+    board[i].value = 1;
+
+  const cell = {
+    col: 3,
+    index: 38,
+    row: 5,
+    value: 1
+  }
+
+  // show cell value in console
+  const result = checkWin(board, cell);
+  expect(result).toBe(1);
+});
+
+test('returns 2 for player 2 win (vertical)', () => {
+//   const board = [
+//     [0, 0, 0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0, 0, 0],
+//     [2, 0, 0, 0, 0, 0, 0],
+//     [2, 0, 0, 0, 0, 0, 0],
+//     [2, 1, 0, 0, 0, 0, 0],
+//     [2, 1, 1, 0, 0, 0, 0]
+//   ];
+  const board = cells;
+  // set up cells for player 2 win like on the board above
+  for (let i = 14 ; i < 42; i += 7)
+    board[i].value = 2;
+
+  const cell = {
+    col: 0,
+    index: 28,
+    row: 4,
+    value: 2
+  }
+
+  const result = checkWin(board, cell);
+  expect(result).toBe(2);
+});
+
+test('returns 3 for tie', () => {
+  const board = cells;
+  // set up cells for tie
+  for (let i = 0; i < 42; i++) {
+    if (i % 2 === 0) {
+      board[i].value = 1;
+    } else {
+      board[i].value = 2;
+    }
+  }
+
+  const cell = {
+    col: 6,
+    index: 41,
+    row: 5,
+    value: 1
+  }
+
+  const result = checkWin(board, cell);
+  expect(result).toBe(3);
+});
