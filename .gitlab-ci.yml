@@ -47,7 +47,7 @@ deploy:
     - ssh-add -l
   script:
     - echo "ls -l " > sftp_commands
-    - echo "cd public_html/extranet/connect4" >> sftp_commands
+    - echo "cd public_html/extranet/" >> sftp_commands
     - echo "ls -l" >> sftp_commands
     - echo "put -r ./build/*" >> sftp_commands
     - cat sftp_commands | sftp -i ~/.ssh/id_rsa -oStrictHostKeyChecking=no -P 8012 sftp@sftp.pedaweb.univ-amu.fr  
