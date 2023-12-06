@@ -54,12 +54,14 @@ function App() {
   
   return (
     <div className="app">
-      <h1>Connect 4</h1>
+      <div id="head">
+        <h1>Connect 4</h1>
+        <div className="buttons">
+          <button id="resetButton" onClick={resetBoard}>Reset</button>
+        </div>
+      </div>
       <div className="board">
         <Board board={board} updateBoard={updateBoard} turn={turn} />
-      </div>
-      <div className="buttons">
-        <button id="resetButton" onClick={resetBoard}>Reset</button>
       </div>
     </div>
   );
