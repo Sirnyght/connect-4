@@ -32,7 +32,7 @@ unit-test:
         - junit.xml
 
 deploy:
-  image: ubuntu:latest
+  image: docker:latest
   stage: deploy
   before_script:
     - apk update
