@@ -1,5 +1,19 @@
 stages:
+  - build
   - test
+  - deploy
+
+build:
+  image: node:latest
+  stage: build
+  before_script:
+    - npm install
+  script:
+    - npm run build
+    - echo "Build completed on $(date)"
+  artifacts:
+    paths:
+      - ./build
 
 unit-test:
   image: node:latest
@@ -16,3 +30,25 @@ unit-test:
     reports:
       junit:
         - junit.xml
+
+deploy:
+  image: ubuntu:latest
+  stage: deploy
+  before_script:
+    - apk update
+    - apk add openssh-client
+    - mkdir -p ~/.ssh
+    - touch ~/.ssh/known_hosts
+    - cat $CI_PEDAWEB_PRIVATE_SSH_KEY > ~/.ssh/id_rsa
+    - chmod 700 ~/.ssh/id_rsa
+    - ssh-keyscan -t rsa sftp.pedaweb.univ-amu.fr >> ~/.ssh/known_hosts
+    - eval $(ssh-agent -s)
+    - ssh-add ~/.ssh/id_rsa
+    - ssh-add -l
+  script:
+    - scp -r ./build/* $CI_PEDAWEB_SSH_USER@sftp:~/public_html/extranet/connect-4
+
+  only:
+    - master
+
+
