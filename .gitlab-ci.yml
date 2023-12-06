@@ -47,8 +47,3 @@ deploy:
     - ssh-add -l
   script:
     - scp -r ./build/* $CI_PEDAWEB_SSH_USER@sftp:~/public_html/extranet/connect-4
-
-  only:
-    - master
-
-
