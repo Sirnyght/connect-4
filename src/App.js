@@ -7,7 +7,7 @@ import { checkWin } from './utils/checkWin.js';
 
 function App() {
   const [turn, setTurn] = useState(1); // 1 or 2
-  const [board, setBoard] = useState(JSON.parse(JSON.stringify(cells)));
+  const [board, setBoard] = useState(JSON.parse(JSON.stringify(cells))); // Deep copy to avoid mutating original cells
   const [gameOver, setGameOver] = useState(false); // true or false
 
   function updateBoard(cell, value) {
