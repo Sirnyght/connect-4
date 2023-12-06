@@ -39,7 +39,7 @@ deploy:
     - apk add openssh-client
     - mkdir -p ~/.ssh
     - touch ~/.ssh/known_hosts
-    - cat $CI_PEDAWEB_PRIVATE_SSH_KEY > ~/.ssh/id_rsa
+    - cat $Private_SSH_Key > ~/.ssh/id_rsa
     - chmod 700 ~/.ssh/id_rsa
     - ssh-keyscan -t rsa sftp.pedaweb.univ-amu.fr >> ~/.ssh/known_hosts
     - eval $(ssh-agent -s)
