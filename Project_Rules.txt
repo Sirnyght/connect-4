@@ -10,13 +10,13 @@ O O O O O O O
 O O O O O O O
 O O O O O O O
 
-Notion de colonne où on joue
-Quand il met 1 jeton, il tombe au plus bas possible -> Gravité
+✔️ Notion de colonne où on joue 
+✔️ Quand il met 1 jeton, il tombe au plus bas possible -> Gravité 
 
-Win condition : 
-4 jetons alignés (verticale, horizontale, diagonale)
 
-Cas du match nul : la grille est complète, aucun gagnant, le jeu s'arrête
+✔️ Win condition : 4 jetons alignés (verticale, horizontale, diagonale) 
+
+✔️ Cas du match nul : la grille est complète, aucun gagnant, le jeu s'arrête
 
 Bonus :
 Reverse d'une colonne
