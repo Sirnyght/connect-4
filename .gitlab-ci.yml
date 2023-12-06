@@ -32,11 +32,11 @@ unit-test:
         - junit.xml
 
 deploy:
-  image: docker:latest
+  image: docker:edge-git  
   stage: deploy
   before_script:
     - apk update
-    - apk add openssh-client
+    - apk add openssh-client git zip curl
     - mkdir -p ~/.ssh
     - touch ~/.ssh/known_hosts
     - cat $Private_SSH_Key > ~/.ssh/id_rsa
