@@ -41,9 +41,13 @@ deploy:
     - touch ~/.ssh/known_hosts
     - cat $Private_SSH_Key > ~/.ssh/id_rsa
     - chmod 700 ~/.ssh/id_rsa
-    - ssh-keyscan -t rsa sftp.pedaweb.univ-amu.fr >> ~/.ssh/known_hosts
+    - ssh-keyscan -t rsa sftp.pedaweb.univ-amu.fr:8012 >> ~/.ssh/known_hosts
     - eval $(ssh-agent -s)
     - ssh-add ~/.ssh/id_rsa
     - ssh-add -l
   script:
-    - scp -r ./build/* $Etulab_User@sftp:~/public_html/extranet/connect-4
+    - echo "ls -l " > sftp_commands
+    - echo "cd public_html/extranet" >> sftp_commands
+    - echo "ls -l" >> sftp_commands
+    - echo "put -r ./build/*" >> sftp_commands
+    - cat sftp_commands | sftp -i ~/.ssh/id_rsa -oStrictHostKeyChecking=no -P 8012 sftp@sftp.pedaweb.univ-amu.fr  
