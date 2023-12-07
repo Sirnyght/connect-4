@@ -23,5 +23,7 @@ test('clicking on a cell updates the board', () => {
   });
   // check if the lowest cell in the first column has been updated
   const updatedCellElement = cellElement[35];
-  expect(updatedCellElement).toHaveClass('player-1');
+  // get child element of updatedCellElement
+  const updatedChildElement = updatedCellElement.firstChild;
+  expect(updatedChildElement).toHaveClass('player-1');
 });
