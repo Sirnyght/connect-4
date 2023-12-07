@@ -9,10 +9,10 @@ export function checkWin(board, cell) {
     const d = diag(board, cell);
     const t = tie(board);
 
-    if (h[0]) return h[0];
-    if (v[0]) return v[0];
-    if (d[0]) return d[0];
-    if (t[0]) return t[0];
+    if (h[0]) return h;
+    if (v[0]) return v;
+    if (d[0]) return d;
+    if (t[0]) return t;
 
     return 0;
 }
