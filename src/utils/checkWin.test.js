@@ -16,6 +16,14 @@ test('returns 0 for no win', () => {
 });
 
 test('returns 1 for player 1 win (horizontal)', () => {
+  // Visual representation of the board
+  // [0, 0, 0, 0, 0, 0, 0]
+  // [0, 0, 0, 0, 0, 0, 0]
+  // [0, 0, 0, 0, 0, 0, 0]
+  // [0, 0, 0, 0, 0, 0, 0]
+  // [0, 0, 0, 0, 0, 0, 0]
+  // [1, 1, 1, 1, 0, 0, 0]
+
   const board = cells;
   // set up cells for player 1 win
   for (let i = 37; i < 41; i++)
@@ -37,14 +45,14 @@ test('returns 1 for player 1 win (horizontal)', () => {
 });
 
 test('returns 2 for player 2 win (vertical)', () => {
-//   const board = [
-//     [0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0],
-//     [2, 0, 0, 0, 0, 0, 0],
-//     [2, 0, 0, 0, 0, 0, 0],
-//     [2, 1, 0, 0, 0, 0, 0],
-//     [2, 1, 1, 0, 0, 0, 0]
-//   ];
+  // Visual representation of the board
+  // [0, 0, 0, 0, 0, 0, 0]
+  // [0, 0, 0, 0, 0, 0, 0]
+  // [2, 0, 0, 0, 0, 0, 0]
+  // [2, 0, 0, 0, 0, 0, 0]
+  // [2, 0, 0, 0, 0, 0, 0]
+  // [2, 0, 0, 0, 0, 0, 0]
+
   const board = cells;
   // set up cells for player 2 win like on the board above
   for (let i = 14 ; i < 42; i += 7)
@@ -64,11 +72,47 @@ test('returns 2 for player 2 win (vertical)', () => {
                                     {"col": 0, "index": 35, "row": 5, "value": 2}]]);
 });
 
+test('returns 1 for player 1 win (diagonal)', () => {
+  // Visual representation of the board
+  // [0, 0, 0, 0, 0, 0, 0]
+  // [0, 0, 0, 0, 0, 0, 0]
+  // [1, 0, 0, 0, 0, 0, 0]
+  // [0, 1, 0, 0, 0, 0, 0]
+  // [0, 0, 1, 0, 0, 0, 0]
+  // [0, 0, 0, 1, 0, 0, 0]
+
+  const board = cells;
+  // set up cells for player 2 win like on the board above
+  for (let i = 14; i < 42; i += 8)
+    board[i].value = 1;
+
+  const cell = {
+    col: 0,
+    index: 14,
+    row: 2,
+    value: 1
+  }
+
+  const result = checkWin(board, cell);
+  expect(result).toStrictEqual([1, [{"col": 0, "index": 14, "row": 2, "value": 1},
+                                    {"col": 1, "index": 22, "row": 3, "value": 1},
+                                    {"col": 2, "index": 30, "row": 4, "value": 1},
+                                    {"col": 3, "index": 38, "row": 5, "value": 1}]]);
+});
+
 test('returns 3 for tie', () => {
+  // Visual representation of the board
+  // [1, 2, 1, 2, 1, 2, 1]
+  // [2, 1, 2, 1, 2, 1, 2]
+  // [2, 2, 1, 2, 1, 2, 1]
+  // [1, 2, 1, 2, 1, 2, 1]
+  // [2, 1, 2, 1, 2, 1, 2]
+  // [2, 1, 2, 1, 2, 1, 2]
+  
   const board = cells;
   // set up cells for tie
   for (let i = 0; i < 42; i++) {
-    if (i % 2 === 0) {
+    if (i % 3 === 0) {
       board[i].value = 1;
     } else {
       board[i].value = 2;
