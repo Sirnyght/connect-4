@@ -9,13 +9,7 @@ test('renders app logo', () => {
   expect(logoElement).toBeInTheDocument();
 });
 
-test('renders board', () => {
-  render(<App />);
-  const boardElement = screen.getByText(/0/);
-
-});
-
-test('renders cells', () => {
+test('renders board & cells', () => {
   render(<App />);
   const cellElement = screen.getAllByText(/0/);
   expect(cellElement).toHaveLength(42);
@@ -31,4 +25,3 @@ test('clicking on a cell updates the board', () => {
   const updatedCellElement = cellElement[35];
   expect(updatedCellElement).toHaveTextContent('1');
 });
-
