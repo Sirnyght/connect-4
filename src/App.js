@@ -22,13 +22,8 @@ function App() {
     // For the first cell in that column starting from the end that has a value of 0, update it.
     // Skip this if there is no row above it
     const firstEmptyCell = columnCells.reverse().find((c) => c.value === 0);
-    
-    if (firstEmptyCell) {
-      // Add class player-turn to the cell
-      const cellElement = document.getElementsByClassName('cell')[firstEmptyCell.index];
-      console.log(cellElement);
-      cellElement.classList.add(`player-${turn}`);
 
+    if (firstEmptyCell) {
       firstEmptyCell.value = value;
       setBoard([...board]);
       setTurn(turn === 1 ? 2 : 1);
@@ -83,14 +78,17 @@ function App() {
   
   return (
     <div className="app">
-      <div id="head">
+      <header id="header">
+      <div className="buttons">
+          <button id="resetButton" onClick={resetBoard}>Reset</button>
+        </div>
         {/* display logo */}
         <img src={logo} alt="logo" id="logo" />
         {/* display reset button */}
         <div className="buttons">
           <button id="resetButton" onClick={resetBoard}>Reset</button>
         </div>
-      </div>
+      </header>
       <div className="board">
         <Board board={board} updateBoard={updateBoard} turn={turn} />
       </div>
