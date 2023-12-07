@@ -44,22 +44,58 @@
   justify-content: center;
   flex-direction: column;
   column-gap: 20px;
- ;
 }
 
-.cell.player-1 {
+
+#header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#logo {
+  width: 80px;
+  height: 80px;
+}
+
+#resetButton {
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+  background-color:   rgb(138, 105, 211);
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+.token {
+  height: 41px;
+  width: 41px;
+  border-radius: 50%;
+  /* Token is a circle */
+  /* border: 2px solid #000; */
+  /* Token has a shadow */
+  box-shadow: 1px 6px 3px 1px rgba(0, 0, 0, 0.5);
+}
+
+.player-1 {
   background-color: #fd6687;
   box-shadow: inset 1px 6px 3px 1px rgba(0, 0, 0, 0.5);
 }
 
-.cell.player-2 {
+.player-2 {
   background-color: #ffce67;
   box-shadow: inset 1px 6px 3px 1px rgba(0, 0, 0, 0.5);
 }
 
 /* Winner cells are RAINBOW, each keyframe must fade slowly into the next color */
-.cell.winner {
-  animation: winner 1s ease-in-out infinite;
+.winner {
+  animation: winner 1s ease-in-out infinite !important;
 }
 
 @keyframes winner {
@@ -86,34 +122,6 @@
     background-color: #fd6687;
   }
 
-}
-
-#head {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-}
-
-#logo {
-  margin-top:10px;
-  width: 80px;
-  height: 80px;
-}
-
-h2 {
-  margin: 10px;
-}
-
-#resetButton {
-  width: 80px;
-  height: 30px;
-  border-radius: 5px;
-  background-color:   rgb(138, 105, 211);
-  color: #fff;
-  font-size: 1em;
-  font-weight: bold;
-  cursor: pointer;
 }
 
 #board {
@@ -152,9 +160,11 @@ h2 {
   /* Draw square around the cell */
   border: 2px solid #000;
   cursor: pointer;
-  background-color: rgb(227, 226, 245);
+  /* background-color: rgb(227, 226, 245); */
+  background-color: #92acf7;
   box-shadow: inset 1px 10px 3px 1px rgba(0, 0, 0, 1);
 }
+
 
 @media (min-width: 680px) {
   #board {
@@ -172,6 +182,11 @@ h2 {
   }
 
   .cell {
+    height: 73px;
+    width: 73px;
+  }
+
+  .token {
     height: 73px;
     width: 73px;
   }
