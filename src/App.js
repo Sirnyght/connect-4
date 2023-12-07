@@ -1,5 +1,7 @@
 import './App.css';
+import logo from './logo.svg';
 import { useState } from 'react';
+
 import Board from './components/Board.js';
 import { cells } from './utils/cells.js';
 import { checkWin } from './utils/checkWin.js';
@@ -22,6 +24,11 @@ function App() {
     const firstEmptyCell = columnCells.reverse().find((c) => c.value === 0);
     
     if (firstEmptyCell) {
+      // Add class player-turn to the cell
+      const cellElement = document.getElementsByClassName('cell')[firstEmptyCell.index];
+      console.log(cellElement);
+      cellElement.classList.add(`player-${turn}`);
+
       firstEmptyCell.value = value;
       setBoard([...board]);
       setTurn(turn === 1 ? 2 : 1);
@@ -30,18 +37,35 @@ function App() {
     if (!firstEmptyCell) return;
 
     const winner = checkWin(board, firstEmptyCell);
-    if (winner === 1) {
+    // color winning cells in green
+    if (winner[1]) {
+      winner[1].forEach((c) => {
+        const cellElement = document.getElementsByClassName('cell')[c.index];
+        cellElement.classList.add('winner');
+      });
+    }
+    
+    if (winner[0] === 1) {
       // Set game over to true
       setGameOver(true);
-      alert('Player 1 wins!');
-    } else if (winner === 2) {
+      // Delay alert for 100ms to allow winner cells to be colored
+      setTimeout(() => {
+        alert('Player 1 wins!');
+      }, 100);
+    } else if (winner[0] === 2) {
       // Set game over to true
       setGameOver(true);
-      alert('Player 2 wins!');
-    } else if (winner === 3) {
+      // Delay alert for 100ms to allow winner cells to be colored
+      setTimeout(() => {
+        alert('Player 2 wins!');
+      }, 100);
+    } else if (winner[0] === 3) {
       // Set game over to true
       setGameOver(true);
-      alert('Tie!');
+      // Delay alert for 100ms to allow winner cells to be colored
+      setTimeout(() => {
+        alert('It\'s a tie!');
+      }, 100);
     }
   }
 
@@ -50,12 +74,19 @@ function App() {
     setBoard(JSON.parse(JSON.stringify(cells)));
     setTurn(1);
     setGameOver(false);
+    // Remove all other classes than cell from cells
+    const cellElements = document.getElementsByClassName('cell');
+    for (let i = 0; i < cellElements.length; i++) {
+      cellElements[i].classList.remove('player-1', 'player-2', 'winner');
+    }
   }
   
   return (
     <div className="app">
       <div id="head">
-        <h1>Connect 4</h1>
+        {/* display logo */}
+        <img src={logo} alt="logo" id="logo" />
+        {/* display reset button */}
         <div className="buttons">
           <button id="resetButton" onClick={resetBoard}>Reset</button>
         </div>

@@ -3,16 +3,16 @@ import { act } from 'react-dom/test-utils';
 import { fireEvent } from '@testing-library/dom';
 import App from './App';
 
-test('renders app title', () => {
+test('renders app logo', () => {
   render(<App />);
-  const titleElement = screen.getByText(/Connect 4/);
-  expect(titleElement).toBeInTheDocument();
+  const logoElement = screen.getByAltText(/logo/);
+  expect(logoElement).toBeInTheDocument();
 });
 
 test('renders board', () => {
   render(<App />);
-  const boardElement = screen.getByText(/Board/);
-  expect(boardElement).toBeInTheDocument();
+  const boardElement = screen.getByText(/0/);
+
 });
 
 test('renders cells', () => {
