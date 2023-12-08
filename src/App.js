@@ -13,6 +13,31 @@ function App() {
   const [board, setBoard] = useState(JSON.parse(JSON.stringify(cells))); // Deep copy to avoid mutating original cells
   const [gameOver, setGameOver] = useState(false); // true or false
 
+  function alertWinner(winner) {
+    switch(winner) {
+      case 1:
+        setGameOver(true);
+        setTimeout(() => {
+          alert('Player 1 wins!');
+        }, 200);
+        break;
+      case 2:
+        setGameOver(true);
+        setTimeout(() => {
+          alert('Player 2 wins!');
+        }, 200);
+        break;
+      case 3:
+        setGameOver(true);
+        setTimeout(() => {
+          alert('It\'s a tie!');
+        }, 200);
+        break;
+      default:
+        break;
+    }
+  }
+
   function updateBoard(cell, value) {
     if (gameOver) return;
 
@@ -50,28 +75,7 @@ function App() {
       });
     }
     
-    if (winner[0] === 1) {
-      // Set game over to true
-      setGameOver(true);
-      // Delay alert for 100ms to allow winner cells to be colored
-      setTimeout(() => {
-        alert('Player 1 wins!');
-      }, 200);
-    } else if (winner[0] === 2) {
-      // Set game over to true
-      setGameOver(true);
-      // Delay alert for 100ms to allow winner cells to be colored
-      setTimeout(() => {
-        alert('Player 2 wins!');
-      }, 200);
-    } else if (winner[0] === 3) {
-      // Set game over to true
-      setGameOver(true);
-      // Delay alert for 100ms to allow winner cells to be colored
-      setTimeout(() => {
-        alert('It\'s a tie!');
-      }, 200);
-    }
+    alertWinner(winner[0]);
   }
 
   function resetBoard() {
@@ -87,6 +91,7 @@ function App() {
   }
 
   function reverseCol(col) {
+    if (gameOver) return;
     setBoard(reverse(board.slice(), col));
     setTurn(turn === 1 ? 2 : 1);
     // For cells in the column, check a potential win
@@ -95,10 +100,10 @@ function App() {
     // If there is a tie, attribute the tie class to the cells
     // If there is no tie, do nothing
     // If there is a win, set game over to true
-    // Get First FIlled Cel of col
+    // Get First Filled Cel of col
     const columnCells = board.filter((c) => c.col === col && c.value !== 0);
     // For each filled cell, check if there is a win
-    columnCells.forEach((c) => {
+    columnCells.forEach((c) => { 
       const winner = checkWin(board, c);
       // color winning cells in green
       if (winner[1]) {
@@ -114,29 +119,7 @@ function App() {
           }, 100);
         });
       }
-      
-      if (winner[0] === 1) {
-        // Set game over to true
-        setGameOver(true);
-        // Delay alert for 100ms to allow winner cells to be colored
-        setTimeout(() => {
-          alert('Player 1 wins!');
-        }, 200);
-      } else if (winner[0] === 2) {
-        // Set game over to true
-        setGameOver(true);
-        // Delay alert for 100ms to allow winner cells to be colored
-        setTimeout(() => {
-          alert('Player 2 wins!');
-        }, 200);
-      } else if (winner[0] === 3) {
-        // Set game over to true
-        setGameOver(true);
-        // Delay alert for 100ms to allow winner cells to be colored
-        setTimeout(() => {
-          alert('It\'s a tie!');
-        }, 200);
-      }
+      alertWinner(winner[0]);
     }
     );
   } 
