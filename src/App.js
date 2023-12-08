@@ -5,6 +5,7 @@ import Board from './components/Board.js';
 import Logo from './components/Logo.js';
 import { cells } from './utils/cells.js';
 import { checkWin } from './utils/checkWin.js';
+import { reverse } from './utils/reverse.js';
 
 
 function App() {
@@ -19,11 +20,13 @@ function App() {
     const col = cell.col;
     // Then, get the cells in that column
     const columnCells = board.filter((c) => c.col === col); 
+    console.log(columnCells);
     // For the first cell in that column starting from the end that has a value of 0, update it.
     // Skip this if there is no row above it
     const firstEmptyCell = columnCells.reverse().find((c) => c.value === 0);
 
     if (firstEmptyCell) {
+      console.log(firstEmptyCell);
       firstEmptyCell.value = value;
       setBoard([...board]);
       setTurn(turn === 1 ? 2 : 1);
@@ -34,13 +37,16 @@ function App() {
     const winner = checkWin(board, firstEmptyCell);
     // color winning cells in green
     if (winner[1]) {
+      console.log(winner[1]);
       winner[1].forEach((c) => {
-        const cellElement = document.getElementsByClassName('cell')[c.index];
-        cellElement.classList.add('winner');
+        console.log(c);
+        console.log(c.index);
+        const cellElement = document.querySelector(`[data-row="${c.row}"][data-col="${c.col}"]`);
+        // if cellElement is not null first child is token
+        console.log(cellElement);
         setTimeout(() => {
-          const token = cellElement.getElementsByClassName('token')[0];
-          token.classList.add('winner');
-        }, 10);
+          cellElement.firstChild.classList.add('winner');
+        }, 100);
       });
     }
     
@@ -57,14 +63,14 @@ function App() {
       // Delay alert for 100ms to allow winner cells to be colored
       setTimeout(() => {
         alert('Player 2 wins!');
-      }, 100);
+      }, 200);
     } else if (winner[0] === 3) {
       // Set game over to true
       setGameOver(true);
       // Delay alert for 100ms to allow winner cells to be colored
       setTimeout(() => {
         alert('It\'s a tie!');
-      }, 100);
+      }, 200);
     }
   }
 
@@ -79,7 +85,62 @@ function App() {
       cellElements[i].classList.remove('player-1', 'player-2', 'winner');
     }
   }
-  
+
+  function reverseCol(col) {
+    setBoard(reverse(board.slice(), col));
+    setTurn(turn === 1 ? 2 : 1);
+    // For cells in the column, check a potential win
+    // If there is a win, attribute the winner class to the cells
+    // If there is no win, do nothing
+    // If there is a tie, attribute the tie class to the cells
+    // If there is no tie, do nothing
+    // If there is a win, set game over to true
+    // Get First FIlled Cel of col
+    const columnCells = board.filter((c) => c.col === col && c.value !== 0);
+    // For each filled cell, check if there is a win
+    columnCells.forEach((c) => {
+      const winner = checkWin(board, c);
+      // color winning cells in green
+      if (winner[1]) {
+        console.log(winner[1]);
+        winner[1].forEach((c) => {
+          console.log(c);
+          console.log(c.index);
+          const cellElement = document.querySelector(`[data-row="${c.row}"][data-col="${c.col}"]`);
+          // if cellElement is not null first child is token
+          console.log(cellElement);
+          setTimeout(() => {
+            cellElement.firstChild.classList.add('winner');
+          }, 100);
+        });
+      }
+      
+      if (winner[0] === 1) {
+        // Set game over to true
+        setGameOver(true);
+        // Delay alert for 100ms to allow winner cells to be colored
+        setTimeout(() => {
+          alert('Player 1 wins!');
+        }, 200);
+      } else if (winner[0] === 2) {
+        // Set game over to true
+        setGameOver(true);
+        // Delay alert for 100ms to allow winner cells to be colored
+        setTimeout(() => {
+          alert('Player 2 wins!');
+        }, 200);
+      } else if (winner[0] === 3) {
+        // Set game over to true
+        setGameOver(true);
+        // Delay alert for 100ms to allow winner cells to be colored
+        setTimeout(() => {
+          alert('It\'s a tie!');
+        }, 200);
+      }
+    }
+    );
+  } 
+
   return (
     <div className="app">
       <div className="left">
@@ -92,11 +153,9 @@ function App() {
           <div className="logo">
             <Logo />
           </div>
-          {/* display reset button */}
         </header>
-
         <div className="board">
-          <Board board={board} updateBoard={updateBoard} turn={turn} />
+          <Board board={board} updateBoard={updateBoard} turn={turn} reverseCol={reverseCol} />
         </div>
       </div>
       <div>
