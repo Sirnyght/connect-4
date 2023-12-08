@@ -25,7 +25,7 @@ export default function Logo() {
               <span className="letter">R</span>
             </span>
           </div>
-          <div className="triangle"></div>
+          <div className="triangle" data-testid="logo-triangle"></div>
         </div>
     );
 }
