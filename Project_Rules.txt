@@ -18,15 +18,11 @@ O O O O O O O
 
 ✔️ Cas du match nul : la grille est complète, aucun gagnant, le jeu s'arrête
 
-Bonus :
-Reverse d'une colonne
-Reverse de colonne : la gravité se réapplique
+✔️ Bonus : Reverse de colonne, la gravité se réapplique
 
-Bonus 2 :
-Random sur le reverse d'une colonne
+✔️ Bonus 2 : Random sur le reverse d'une colonne
 
-Bonus 3 :
-Limitation du nombre de reverse
+✔️ Bonus 3 : Limitation du nombre de reverse
 
 REGLES A DEFINIR LORS DE LA CREATION DU P4, à expliquer dans un Readme
 Dans Gitlab
