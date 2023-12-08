@@ -111,16 +111,24 @@
 @keyframes winner {
   /* Retrowave colors */
   0% {
-    background-color: #f96604;
-  }
-  33% {
-    background-color: #67ff92;
-  }
-  66% {
     background-color: #92acf7;
+    /* background-color: var(--c1); */
+  }
+  25% {
+    background-color: #bc86c4;
+    /* background-color: var(--c2); */
+  }
+  50% {
+    background-color: #92acf7;
+    /* background-color: var(--c5); */
+  }
+  75% {
+    background-color: #bc86c4;
+    /* background-color: var(--c1); */
   }
   100% {
-    background-color: #f96604;
+    background-color: #92acf7;
+    /* background-color: var(--c2); */
   }
 }
 
@@ -295,7 +303,7 @@ body {
     animation: glow 2.5s linear infinite;
     color: #F4C6F4;
   }
-  
+
   body {
     background-size: cover;
   }
