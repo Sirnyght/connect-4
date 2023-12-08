@@ -40,46 +40,32 @@ function App() {
 
   function updateBoard(cell, value) {
     if (gameOver) return;
-
-    // First, get cell column and row
-    const col = cell.col;
-    // Then, get the cells in that column
-    const columnCells = board.filter((c) => c.col === col); 
-    console.log(columnCells);
+    // Get the cells in that column
+    const columnCells = board.filter((c) => c.col === cell.col); 
     // For the first cell in that column starting from the end that has a value of 0, update it.
     // Skip this if there is no row above it
     const firstEmptyCell = columnCells.reverse().find((c) => c.value === 0);
-
-    if (firstEmptyCell) {
-      console.log(firstEmptyCell);
+    if (!firstEmptyCell) return
+    else {
       firstEmptyCell.value = value;
       setBoard([...board]);
       setTurn(turn === 1 ? 2 : 1);
     }
 
-    if (!firstEmptyCell) return;
-
     const winner = checkWin(board, firstEmptyCell);
     // color winning cells in green
     if (winner[1]) {
-      console.log(winner[1]);
       winner[1].forEach((c) => {
-        console.log(c);
-        console.log(c.index);
         const cellElement = document.querySelector(`[data-row="${c.row}"][data-col="${c.col}"]`);
-        // if cellElement is not null first child is token
-        console.log(cellElement);
         setTimeout(() => {
           cellElement.firstChild.classList.add('winner');
-        }, 100);
+        }, 10);
       });
     }
-    
     alertWinner(winner[0]);
   }
 
   function resetBoard() {
-    console.log('resetting board');
     setBoard(JSON.parse(JSON.stringify(cells)));
     setTurn(1);
     setGameOver(false);
@@ -107,16 +93,11 @@ function App() {
       const winner = checkWin(board, c);
       // color winning cells in green
       if (winner[1]) {
-        console.log(winner[1]);
         winner[1].forEach((c) => {
-          console.log(c);
-          console.log(c.index);
           const cellElement = document.querySelector(`[data-row="${c.row}"][data-col="${c.col}"]`);
-          // if cellElement is not null first child is token
-          console.log(cellElement);
           setTimeout(() => {
             cellElement.firstChild.classList.add('winner');
-          }, 100);
+          }, 10);
         });
       }
       alertWinner(winner[0]);
