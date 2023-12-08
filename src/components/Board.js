@@ -9,7 +9,7 @@ export default function Board({ board, updateBoard, turn, reverseCol }) {
         {/* Seven columns , six rows */}
         {/* Column 1 */}
         <div className="colTest">
-          <button className="button button-reverse" onClick={() => reverseCol(0)}></button>
+          <button className="button button-reverse" onClick={() => reverseCol(0)} data-testid="button-reverse"></button>
           <div className="board-col board-col-0">
             {board.map((cell, index) => {
               if (index % 7 === 0) {
