@@ -156,6 +156,15 @@ body {
   /* do not show */
   display: none;
 }
+
+.colTest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
 .button {
   width: 60px;
   height: 30px;
@@ -167,6 +176,13 @@ body {
   font-weight: bold;
   cursor: pointer;
   animation: glow 2.5s linear infinite;
+}
+
+.button-reverse {
+  width: 70%;
+  height: 10px;
+  background-color: #F4C6F4;
+  margin-bottom: 10px;
 }
 
 #board {
@@ -195,6 +211,13 @@ body {
   animation: glow 2.5s linear infinite;
   /* Board has rounded corners */
   border-radius: 5%;    
+}
+
+.board-col {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 5px;
+  row-gap: 10px; 
 }
 
 .cell {
@@ -241,6 +264,9 @@ body {
   .left {
     /* show */
     display: block;
+    /* texte glows */
+    animation: glow 2.5s linear infinite;
+    color: #F4C6F4;
   }
   #board {
     /* width: 632px; */

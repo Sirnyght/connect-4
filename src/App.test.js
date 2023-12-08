@@ -16,7 +16,7 @@ test('clicking on a cell updates the board', () => {
     fireEvent.click(cellElement[0]);
   });
   // check if the lowest cell in the first column has been updated
-  const updatedCellElement = cellElement[35];
+  const updatedCellElement = cellElement[5];
   // get child element of updatedCellElement
   const updatedChildElement = updatedCellElement.firstChild;
   expect(updatedChildElement).toHaveClass('player-1');
