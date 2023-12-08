@@ -4,15 +4,15 @@ export function checkWin(board, cell) {
     // Check for diagonal win
     // Check for tie
     // Return 0 for no win, 1 for player 1 win, 2 for player 2 win, and 3 for tie
+    const t = tie(board);
     const h = hor(board, cell);
     const v = vert(board, cell);
     const d = diag(board, cell);
-    const t = tie(board);
 
+    if (t[0]) return t;
     if (h[0]) return h;
     if (v[0]) return v;
     if (d[0]) return d;
-    if (t[0]) return t;
 
     return 0;
 }
@@ -70,6 +70,18 @@ function diag(board, cell) {
 }
 
 function tie(board) {
+    function checkTie(board, cell) {
+        const h = hor(board, cell);
+        const v = vert(board, cell);
+        const d = diag(board, cell);
+    
+        if (h[0] !== 0) return h;
+        if (v[0] !== 0) return v;
+        if (d[0] !== 0) return d;
+    
+        return 0;
+    }
+
     // Check for tie
     // If there are no more empty cells, return 3
     // Otherwise, return 0
@@ -77,6 +89,27 @@ function tie(board) {
     if (emptyCells.length === 0) {
         return [3, []];
     }
+    // If there are two winners, return 3
+    // Otherwise, return 0
+    // For each non empty cell in board, check if there is a win
+    // If there is two win or more by different player at the end of the loop, return 3
+    // Otherwise, return 0
+    const nonEmptyCells = board.filter((c) => c.value !== 0);
+    let winner = 0;
+    let lastWinner = 0;
+    nonEmptyCells.forEach((c) => {
+        const w = checkTie(board, c);
+        if (w[0]) {
+            if (w[0] !== lastWinner) {
+                winner++;
+                lastWinner = w[0];
+            }
+        }
+    });
+    if (winner >= 2) {
+        return [3, []];
+    }
+
     return 0;
 }
 
