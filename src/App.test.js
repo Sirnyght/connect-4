@@ -3,12 +3,6 @@ import { act } from 'react-dom/test-utils';
 import { fireEvent } from '@testing-library/dom';
 import App from './App';
 
-test('renders app logo', () => {
-  render(<App />);
-  const logoElement = screen.getByAltText(/logo/);
-  expect(logoElement).toBeInTheDocument();
-});
-
 test('renders board & cells', () => {
   render(<App />);
   const cellElement = screen.getAllByTestId(/cell/);

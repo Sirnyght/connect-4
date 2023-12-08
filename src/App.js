@@ -1,8 +1,8 @@
 import './App.css';
-import logo from './logo.svg';
 import { useState } from 'react';
 
 import Board from './components/Board.js';
+import Logo from './components/Logo.js';
 import { cells } from './utils/cells.js';
 import { checkWin } from './utils/checkWin.js';
 
@@ -37,6 +37,10 @@ function App() {
       winner[1].forEach((c) => {
         const cellElement = document.getElementsByClassName('cell')[c.index];
         cellElement.classList.add('winner');
+        setTimeout(() => {
+          const token = cellElement.getElementsByClassName('token')[0];
+          token.classList.add('winner');
+        }, 10);
       });
     }
     
@@ -46,7 +50,7 @@ function App() {
       // Delay alert for 100ms to allow winner cells to be colored
       setTimeout(() => {
         alert('Player 1 wins!');
-      }, 100);
+      }, 200);
     } else if (winner[0] === 2) {
       // Set game over to true
       setGameOver(true);
@@ -78,19 +82,23 @@ function App() {
   
   return (
     <div className="app">
-      <header id="header">
-      <div className="buttons">
-          <button id="resetButton" onClick={resetBoard}>Reset</button>
+      <div>
+        <button className="button" onClick={resetBoard}>Reset</button>
+      </div>
+      <div>
+        <header id="header">
+          <div className="logo">
+            <Logo />
+          </div>
+          {/* display reset button */}
+        </header>
+
+        <div className="board">
+          <Board board={board} updateBoard={updateBoard} turn={turn} />
         </div>
-        {/* display logo */}
-        <img src={logo} alt="logo" id="logo" />
-        {/* display reset button */}
-        <div className="buttons">
-          <button id="resetButton" onClick={resetBoard}>Reset</button>
-        </div>
-      </header>
-      <div className="board">
-        <Board board={board} updateBoard={updateBoard} turn={turn} />
+      </div>
+      <div>
+        
       </div>
     </div>
   );
