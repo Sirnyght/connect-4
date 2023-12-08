@@ -26,7 +26,7 @@ export default function Board({ board, updateBoard, turn, reverseCol }) {
                         {board.map((cell, index) => {
                             if (index % 7 === 0) {
                                 return <Cell key={index} cell={cell} updateBoard={updateBoard} turn={turn} />
-                            }
+                            } else return null;
                         })}
                     </div>    
                 </div>
@@ -37,7 +37,7 @@ export default function Board({ board, updateBoard, turn, reverseCol }) {
                         {board.map((cell, index) => {
                             if (index % 7 === 1) {
                                 return <Cell key={index} cell={cell} updateBoard={updateBoard} turn={turn} />
-                            }
+                            } else return null;
                         })}
                     </div>
                 </div>
@@ -48,7 +48,7 @@ export default function Board({ board, updateBoard, turn, reverseCol }) {
                         {board.map((cell, index) => {
                             if (index % 7 === 2) {
                                 return <Cell key={index} cell={cell} updateBoard={updateBoard} turn={turn} />
-                            }
+                            } else return null;
                         })}
                     </div>
                 </div>
@@ -59,18 +59,18 @@ export default function Board({ board, updateBoard, turn, reverseCol }) {
                         {board.map((cell, index) => {
                             if (index % 7 === 3) {
                                 return <Cell key={index} cell={cell} updateBoard={updateBoard} turn={turn} />
-                            }
+                            } else return null;
                         })}
                     </div>
                 </div>
-                {/* Column 5 */}
+                {/* Column 5 */} else return null;
                 <div className="colTest">
                     <button className="button button-reverse" onClick={() => reverseCol(4)}></button>
                     <div className="board-col board-col-4">
                         {board.map((cell, index) => {
                             if (index % 7 === 4) {
                                 return <Cell key={index} cell={cell} updateBoard={updateBoard} turn={turn} />
-                            }
+                            } else return null;
                         })}
                     </div>
                 </div>
@@ -81,7 +81,7 @@ export default function Board({ board, updateBoard, turn, reverseCol }) {
                         {board.map((cell, index) => {
                             if (index % 7 === 5) {
                                 return <Cell key={index} cell={cell} updateBoard={updateBoard} turn={turn} />
-                            }
+                            } else return null;
                         })}
                     </div>
                 </div>
@@ -92,7 +92,7 @@ export default function Board({ board, updateBoard, turn, reverseCol }) {
                         {board.map((cell, index) => {
                             if (index % 7 === 6) {
                                 return <Cell key={index} cell={cell} updateBoard={updateBoard} turn={turn} />
-                            }
+                            } else return null;
                         })}
                     </div>
                 </div>
