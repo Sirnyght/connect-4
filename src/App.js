@@ -82,8 +82,10 @@ function App() {
   
   return (
     <div className="app">
-      <div>
-        <button className="button" onClick={resetBoard}>Reset</button>
+      <div className="left">
+        <h1>Connect Four</h1>
+        <h2>Player {turn}'s turn</h2>
+        <h3>{gameOver ? 'Game over' : ''}</h3>
       </div>
       <div>
         <header id="header">
@@ -98,7 +100,7 @@ function App() {
         </div>
       </div>
       <div>
-        
+        <button className="button" onClick={resetBoard}>Reset</button>
       </div>
     </div>
   );

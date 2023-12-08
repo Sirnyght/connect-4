@@ -136,7 +136,6 @@ body {
  
 .app {
   display: grid;
-
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -153,6 +152,10 @@ body {
 }
 
 /* Basic CSS, with mobile first in mind */
+.left {
+  /* do not show */
+  display: none;
+}
 .button {
   width: 60px;
   height: 30px;
@@ -166,9 +169,53 @@ body {
   animation: glow 2.5s linear infinite;
 }
 
+#board {
+  width: 335px;
+  height: 360px;
+  position: relative;
+  grid-column: 1/3;
+  justify-self: center;
+}
+
+#board #board-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  row-gap: 6px;
+  padding-top: 0.4em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-bottom: 0.4em;
+  /* Board is dark blue */
+  background-color: rgba(0, 0, 0, 0.2);
+  /* Board has a black border */
+  border: 4px solid #F4C6F4;
+  animation: glow 2.5s linear infinite;
+  /* Board has rounded corners */
+  border-radius: 5%;    
+}
+
+.cell {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Draw square around the cell */
+  border: 2px solid #000;
+  cursor: pointer;
+  /* background-color: rgb(227, 226, 245); */
+  /* background-color: #92acf7; */
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: inset 1px 10px 3px 1px rgba(0, 0, 0, 1);
+}
+
 .token {
-  height: 41px;
-  width: 41px;
+  height: 35px;
+  width: 35px;
   border-radius: 50%;
   box-shadow: 1px 6px 3px 1px rgba(0, 0, 0, 0.5);
   filter: saturate(500%) drop-shadow(0 0 6px #CF33D9) drop-shadow(0 0 6px #CF33D9);
@@ -189,51 +236,12 @@ body {
     animation: glow 2.5s linear infinite;
   }
 
-#board {
-  width: 335px;
-  height: 360px;
-  position: relative;
-  grid-column: 1/3;
-  justify-self: center;
-}
-
-#board #board-grid {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-  row-gap: 6px;
-  padding-top: 0.4em;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  /* Board is dark blue */
-  background-color: rgba(0, 0, 0, 0.2);
-  /* Board has a black border */
-  border: 4px solid #F4C6F4;
-  animation: glow 2.5s linear infinite;
-  /* Board has rounded corners */
-  border-radius: 5%;    
-}
-
-.cell {
-  height: 41px;
-  width: 41px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Draw square around the cell */
-  border: 2px solid #000;
-  cursor: pointer;
-  /* background-color: rgb(227, 226, 245); */
-  /* background-color: #92acf7; */
-  background-color: rgba(0, 0, 0, 0.5);
-  box-shadow: inset 1px 10px 3px 1px rgba(0, 0, 0, 1);
-}
-
 /* Tablet rules */
 @media (min-width: 680px) {
+  .left {
+    /* show */
+    display: block;
+  }
   #board {
     /* width: 632px; */
     width: 686px;
