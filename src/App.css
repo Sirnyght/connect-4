@@ -261,13 +261,6 @@ body {
 
 /* Tablet rules */
 @media (min-width: 680px) {
-  .left {
-    /* show */
-    display: block;
-    /* texte glows */
-    animation: glow 2.5s linear infinite;
-    color: #F4C6F4;
-  }
   #board {
     /* width: 632px; */
     width: 686px;
@@ -295,6 +288,14 @@ body {
 
 /* PC Only / Wide mode rules */
 @media (min-width: 1100px) {
+  .left {
+    /* show */
+    display: block;
+    /* texte glows */
+    animation: glow 2.5s linear infinite;
+    color: #F4C6F4;
+  }
+  
   body {
     background-size: cover;
   }
